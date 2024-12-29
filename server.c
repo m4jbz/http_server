@@ -19,6 +19,7 @@
 // FUNCTION THAT HANDLES HTML FILES
 void send_html_response(int client_socket, const char* filename)
 {
+    // OPEN THE FILE WITH ONLY READ PERMISSIONS
     FILE *file = fopen(filename, "r");
 
     if (!file) {
@@ -28,7 +29,7 @@ void send_html_response(int client_socket, const char* filename)
 
     // THIS GETS THE SIZE OF THE FILE CONTENT BY JUMPING TO THE END
     // OF THE FILE AND MEASURE HOW LONG IT IS, BUT THATS LIKE MOVING
-    // THE START OF THE FILE TO THE END, SO REWIND SOLVES THAT.
+    // THE START OF THE FILE TO THE END, SO REWIND GOES BACK TO THE START.
     fseek(file, 0, SEEK_END);
     long int file_size = ftell(file);
     rewind(file);
